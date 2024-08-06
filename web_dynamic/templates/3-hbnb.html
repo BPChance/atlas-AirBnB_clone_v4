@@ -17,18 +17,6 @@
 <body>
   <header>
     <div class="logo"></div>
-    <div id="api_status" style="
-    position: absolute;
-    top : 50%;
-    right : 30px;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background-color: #cccccc;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;"></div>
   </header>
   <div class="container">
     <section class="filters">
@@ -58,7 +46,7 @@
             {% for amenity in amenities %}
             <li>
               <input type="checkbox" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}"
-                style="margin-right: 10px;">
+                style="margin-left: 10px;">
               {{ amenity.name }}
             </li>
             {% endfor %}
@@ -67,13 +55,36 @@
       </div>
       <button type="button">Search</button>
     </section>
-    <div class="places">
+    <div class="placesh1">
       <h1>Places</h1>
-      </section>
     </div>
-    <footer>
-      <p>Holberton School</p>
-    </footer>
+    <section class="places">
+      <!-- <h1>Places</h1> -->
+      {% for place in places %}
+      <article>
+        <div class="title_box">
+          <h2>{{ place.name }}</h2>
+          <div class="price_by_night">${{ place.price_by_night }}</div>
+        </div>
+        <div class="information">
+          <div class="max_guest">{{ place.max_guest }} Guest{% if place.max_guest != 1 %}s{% endif %}</div>
+          <div class="number_rooms">{{ place.number_rooms }} Bedroom{% if place.number_rooms != 1 %}s{% endif %}</div>
+          <div class="number_bathrooms">{{ place.number_bathrooms }} Bathroom{% if place.number_bathrooms != 1 %}s{%
+            endif %}</div>
+        </div>
+        <div class="user">
+          <b>Owner:</b> {{ place.user.first_name }} {{ place.user.last_name }}
+        </div>
+        <div class="description">
+          {{ place.description | safe }}
+        </div>
+      </article>
+      {% endfor %}
+    </section>
+  </div>
+  <footer>
+    <p>Holberton School</p>
+  </footer>
 </body>
 
 </html>
